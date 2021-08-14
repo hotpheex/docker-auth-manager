@@ -39,7 +39,7 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: hotpheex/docker-auth-manager:latest,hotpheex/docker-auth-manager:{{ steps.version.outputs.new_tag }}
+          tags: hotpheex/docker-auth-manager:latest,hotpheex/docker-auth-manager:${{ steps.version.outputs.new_tag }}
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
