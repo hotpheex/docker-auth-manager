@@ -24,14 +24,14 @@ echo '<username>:<password>' | base64
 ### Examples
 Run with default settings:
 ```
-docker run --rm -v "${HOME}/.docker/config.json:/.docker/config" \
+docker run -d -v "${HOME}/.docker/config.json:/.docker/config" \
     -e DOCKER_CREDS="dXNlcm5hbWUxOnBhc3N3b3JkMQo=,VVNFUk5BTUU6UEFTU1dPUkQK,dVNlUm5BbUU6cEFzU3dPckQK" \
         hotpheex/docker-auth-manager
 ```
 
 Set configurable options:
 ```
-docker run --rm -v "${HOME}/.docker/config.json:/.docker/config" \
+docker run -d -v "${HOME}/.docker/config.json:/.docker/config" \
     -e DOCKER_CREDS="dXNlcm5hbWUxOnBhc3N3b3JkMQo=,VVNFUk5BTUU6UEFTU1dPUkQK,dVNlUm5BbUU6cEFzU3dPckQK" \
     -e REFRESH_THRESHOLD=100 \
     -e SCHEDULE_MINS=5 \
