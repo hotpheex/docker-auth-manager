@@ -41,5 +41,14 @@ jobs:
           push: true
           tags: hotpheex/docker-auth-manager:latest,hotpheex/docker-auth-manager:${{ steps.version.outputs.new_tag }}
 
+      - name: Sync README & Description to Dockerhub
+        uses: meeDamian/sync-readme@v1.0.6
+        with:
+          user: ${{ secrets.DOCKER_HUB_USERNAME }}
+          pass: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+          slug: hotpheex/docker-auth-manager
+          readme: ./README.md
+          description: Automatically rotate Docker credentials to avoid the annoying rate limit 
+
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
