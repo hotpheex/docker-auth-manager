@@ -32,7 +32,7 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: ${{ env.GITHUB_REPOSITORY }}:latest
+          tags: hotpheex/docker-auth-manager:latest
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
