@@ -14,12 +14,14 @@ DOCKER_MAX_LIMIT = 200
 class Auths:
     def __init__(self, docker_creds):
         creds = docker_creds.split(',')
+        logging.info(f'Loading {len(creds)} docker credentials...')
         if not creds:
             logging.critical('No docker credentials were found')
             raise SystemExit()
         self.auths = dict.fromkeys(creds, 0)
         self.check_remaining()
-        logging.info(f'Loaded {len(self.auths.keys())} docker credentials')
+        for cred, remaining in self.auths.items():
+            logging.info(f'    {cred[0:6]}: {remaining}')
 
     def check_remaining(self):
         for auth in self.auths.keys():
