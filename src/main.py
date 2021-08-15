@@ -26,6 +26,7 @@ class Auths:
             self.auths[auth] = check_remaining_pulls(auth)
 
     def select_fresh_auth(self):
+        self.check_remaining()
         for auth, remaining in sorted(self.auths.items(), key=lambda item: item[1], reverse=True):
             if remaining > 1:
                 return auth
