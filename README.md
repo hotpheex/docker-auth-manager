@@ -8,7 +8,7 @@
 * If the remaning downloads fall below a threshold, rotates the credentials with one with the highest remaining downloads
 
 ## Formatting credentials
-For each docker login, generate the basic auth string with (replace `<username>`/`<password>`):
+For each docker login, generate the basic auth string (replace `<username>`/`<password>`) with:
 ```
 echo '<username>:<password>' | base64
 ```
@@ -36,4 +36,19 @@ docker run -d -v "${HOME}/.docker/config.json:/.docker/config" \
     -e REFRESH_THRESHOLD=100 \
     -e SCHEDULE_MINS=5 \
         hotpheex/docker-auth-manager
+```
+
+docker-compose:
+```
+services:
+  docker-auth-manager:
+    container_name: docker-auth-manager
+    restart: unless-stopped
+    image: hotpheex/docker-auth-manager
+    environment:
+      - DOCKER_CREDS=dXNlcm5hbWUxOnBhc3N3b3JkMQo=,VVNFUk5BTUU6UEFTU1dPUkQK,dVNlUm5BbUU6cEFzU3dPckQK
+      - REFRESH_THRESHOLD=50
+      - SCHEDULE_MINS=10
+    volumes:
+      - ${HOME}/.docker/config.json:/.docker/config
 ```
