@@ -10,7 +10,7 @@
 ## Formatting credentials
 For each docker login, generate the basic auth string (replace `<username>`/`<password>`) with:
 ```
-echo '<username>:<password>' | base64
+echo -n '<username>:<password>' | base64 -w 0
 ```
 
 ## Options
