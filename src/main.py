@@ -118,8 +118,8 @@ def main():
     scheduler.add_job(
         update_current_auth_schedule,
         'interval',
-        minutes=config['SCHEDULE_MINS'],
-        args=(auths, config['DOCKER_CONFIG_PATH'], config['REFRESH_THRESHOLD']),
+        minutes=int(config['SCHEDULE_MINS']),
+        args=(auths, config['DOCKER_CONFIG_PATH'], int(config['REFRESH_THRESHOLD'])),
         next_run_time=datetime.now()
     )
     logging.info(f'Scheduled to run every {config["SCHEDULE_MINS"]} mins')
